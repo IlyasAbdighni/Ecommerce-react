@@ -1,0 +1,23 @@
+{
+  "name": "webprogramming-react",
+  "version": "1.0.0",
+  "description": "Ecommerce demo app using node and react.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "mongodb"
+  ],
+  "author": "Yiliyasi Aboduaini",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jshint": "^2.9.5",
+    "nodemon": "^1.17.5"
+  }
+}
