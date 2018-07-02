@@ -13,6 +13,8 @@ export default class Navbar extends Component {
 			<Segment inverted>
 				<Menu inverted pointing secondary>
 					<Menu.Item
+						as="a"
+						href="/"
 						name="home"
 						active={activeItem === "home"}
 						onClick={this.handleItemClick}
@@ -25,6 +27,21 @@ export default class Navbar extends Component {
 					<Menu.Item
 						name="friends"
 						active={activeItem === "friends"}
+						onClick={this.handleItemClick}
+					/>
+					<Menu.Item
+						as="a"
+						href="/login"
+						name="login"
+						active={activeItem === "login"}
+						onClick={this.handleItemClick}
+						position="right"
+					/>
+					<Menu.Item
+						as="a"
+						href="/register"
+						name="register"
+						active={activeItem === "register"}
 						onClick={this.handleItemClick}
 					/>
 				</Menu>

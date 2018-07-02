@@ -1,0 +1,6 @@
+.item-container {
+	transition: box-shadow 200ms, background 200ms;
+}
+.item-container:hover {
+	box-shadow: rgb(204, 204, 204) 0px 0px 10px;
+}

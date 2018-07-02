@@ -3,8 +3,8 @@ import { Card, Icon, Image } from "semantic-ui-react";
 
 export default props => {
 	return (
-		<Card>
-			<Image src="https://react.semantic-ui.com/assets/images/avatar/large/matthew.png" />
+		<Card className="item-container">
+			<Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
 			<Card.Content>
 				<Card.Header>Matthew</Card.Header>
 				<Card.Meta>

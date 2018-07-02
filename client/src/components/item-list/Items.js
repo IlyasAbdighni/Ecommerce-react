@@ -7,9 +7,8 @@ class Items extends React.Component {
 	render() {
 		return (
 			<Container>
-				<h3>This is home</h3>
 				<Grid container columns={3}>
-					{[1, 2, 3].map(i => (
+					{[1, 2, 3, 4, 5].map(i => (
 						<Grid.Column key={i}>
 							<Item />
 						</Grid.Column>
