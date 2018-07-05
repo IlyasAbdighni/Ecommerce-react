@@ -1,0 +1,16 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaVersion": 2016
+	},
+	"rules": {
+		"indent": ["warn", "tab"],
+		"linebreak-style": ["warn", "unix"],
+		"quotes": ["warn", "single"],
+		"semi": ["error", "always"]
+	}
+}
