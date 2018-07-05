@@ -11,7 +11,7 @@
 	"scripts": {
 		"dev": "nodemon server.js",
 		"start": "node server.js",
-		"heroku-postbuild": "yarn install --prefix client && yarn build --prefix client"
+		"heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
 	},
 	"keywords": [
 		"node",
