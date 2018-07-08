@@ -7,7 +7,6 @@ import {ApiClient} from '../utils/ApiClient';
 import {connect} from 'react-redux';
 
 const renderUserMenu = (user, pathname, logOut) => {
-	console.log('************** user **************', user.authenticated);
 	if (user && user.authenticated) {
 		return (
 			<React.Fragment>
@@ -98,7 +97,7 @@ class Navbar extends Component {
 						active={this.pathname === "/products"}
 						onClick={this.handleItemClick}
 					/>
-				{user && renderUserMenu(user, this.pathname, this.logOut)}
+				{renderUserMenu(user, this.pathname, this.logOut)}
 
 				</Menu>
 			</Segment>
