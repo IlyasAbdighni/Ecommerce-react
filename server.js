@@ -7,9 +7,11 @@ const morgan = require('morgan');
 const passport = require('passport');
 const flash = require('connect-flash');
 
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+);
 app.use(bodyParser.json());
 
 // log requests to console
@@ -22,14 +24,14 @@ app.use(passport.initialize());
 // Database connection
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  config.database,
-  function(error) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Database connected successfully');
-    }
-  }
+	config.database,
+	function(error) {
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Database connected successfully');
+		}
+	}
 );
 
 // Bringing passport strategy
@@ -39,19 +41,12 @@ const api = require('./api');
 
 app.use('/api', api);
 
-if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
+const path = require('path');
 
-  app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  );
-} else {
-  // Home page
-  app.get('/', (req, res) => {
-    res.send('Let us begin!');
-  });
-}
+app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+app.get('*', (req, res) =>
+	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+);
 
 const PORT = process.env.PORT || 5000;
 

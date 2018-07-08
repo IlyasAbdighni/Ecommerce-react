@@ -1,51 +1,109 @@
 import React, { Component } from "react";
 import { Menu, Segment } from "semantic-ui-react";
+import {Link, Redirect} from 'react-router-dom';
+import Auth from '../utils/Auth';
+import {authenticateUser} from '../actions/user';
+import {ApiClient} from '../utils/ApiClient';
+import {connect} from 'react-redux';
 
-export default class Navbar extends Component {
-	state = { activeItem: "home" };
+const renderUserMenu = (user, pathname, logOut) => {
+	console.log('************** user **************', user.authenticated);
+	if (user && user.authenticated) {
+		return (
+			<React.Fragment>
+				{
+					user.user.role === 'Admin' &&
+					<Menu.Item
+						as={Link}
+						to='/admin/product/add'
+						name='Add a new product'
+						active={pathname === '/admin/product/add'}
+						position="right"
+					/>
+				}
 
-	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+				<Menu.Item
+					as={Link}
+					to="/account"
+					name={user.user.role === 'Admin' ? "admin" : user.user.email}
+					active={pathname === "/admin" || pathname === "/user/cart"}
+					position="right"
+				/>
+
+				<Menu.Item
+					name="logout"
+					onClick={logOut}
+					position='right'
+				/>
+			</React.Fragment>
+		)
+	}
+
+	return (
+		<React.Fragment>
+			<Menu.Item
+				as={Link}
+				to="/login"
+				name="login"
+				active={pathname === "/login"}
+				position="right"
+			/>
+			<Menu.Item
+				as={Link}
+				to="/register"
+				name="register"
+				active={pathname === "/register"}
+			/>
+		</React.Fragment>
+	)
+}
+
+class Navbar extends Component {
+
+	state = { user: null, authenticated:false }
+
+
+	componentDidMount() {
+    this.props.dispatch(authenticateUser());
+  }
+
+  componentWillReceiveProps(nextProps) {
+		if (nextProps.user && nextProps.user.authenticated) {
+			this.setState({ user: nextProps.user, authenticated: nextProps.user.authenticated })
+		}
+  }
+
+	logOut = () => {
+		Auth.deauthenticateUser();
+		window.location = window.location.origin + '/login';
+
+	}
 
 	render() {
-		const { activeItem } = this.state;
-
+		const {user} = this.state;
 		return (
 			<Segment inverted>
 				<Menu inverted pointing secondary>
 					<Menu.Item
-						as="a"
-						href="/"
+						as={Link}
+						to="/"
 						name="home"
-						active={activeItem === "home"}
+						active={this.pathname === "/"}
 						onClick={this.handleItemClick}
 					/>
 					<Menu.Item
-						name="messages"
-						active={activeItem === "messages"}
+						name="products"
+						as={Link}
+						to="/products"
+						active={this.pathname === "/products"}
 						onClick={this.handleItemClick}
 					/>
-					<Menu.Item
-						name="friends"
-						active={activeItem === "friends"}
-						onClick={this.handleItemClick}
-					/>
-					<Menu.Item
-						as="a"
-						href="/login"
-						name="login"
-						active={activeItem === "login"}
-						onClick={this.handleItemClick}
-						position="right"
-					/>
-					<Menu.Item
-						as="a"
-						href="/register"
-						name="register"
-						active={activeItem === "register"}
-						onClick={this.handleItemClick}
-					/>
+				{user && renderUserMenu(user, this.pathname, this.logOut)}
+
 				</Menu>
 			</Segment>
 		);
 	}
 }
+
+export default connect(({user}) => ({user}))(Navbar);

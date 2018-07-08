@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
 	Button,
 	Container,
@@ -15,14 +15,14 @@ import {
 	Sidebar,
 	Visibility
 } from "semantic-ui-react";
+import {Link} from 'react-router-dom';
 
 import Items from "./item-list/Items";
 import Footer from "./Footer";
+import {ApiClient} from '../utils/ApiClient';
+import axios from 'axios';
 
-/* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
- * such things.
- */
+
 const HomepageHeading = ({ mobile }) => (
 	<Container text>
 		<Header
@@ -46,7 +46,7 @@ const HomepageHeading = ({ mobile }) => (
 				marginTop: mobile ? "0.5em" : "1.5em"
 			}}
 		/>
-		<Button as="a" href="/products" primary size="huge">
+		<Button as={Link} to="/products" primary size="huge">
 			Go to product page
 			<Icon name="right arrow" />
 		</Button>
@@ -80,36 +80,6 @@ class DesktopContainer extends Component {
 						style={{ minHeight: 700, padding: "1em 0em" }}
 						vertical
 					>
-						<Menu
-							fixed={fixed ? "top" : null}
-							inverted={!fixed}
-							pointing={!fixed}
-							secondary={!fixed}
-							size="large"
-						>
-							<Container>
-								<Menu.Item as="a" active>
-									Home
-								</Menu.Item>
-								<Menu.Item as="a">Work</Menu.Item>
-								<Menu.Item as="a">Company</Menu.Item>
-								<Menu.Item as="a">Careers</Menu.Item>
-								<Menu.Item position="right">
-									<Button as="a" href="/login" inverted={!fixed}>
-										Log in
-									</Button>
-									<Button
-										as="a"
-										href="/register"
-										inverted={!fixed}
-										primary={fixed}
-										style={{ marginLeft: "0.5em" }}
-									>
-										Sign Up
-									</Button>
-								</Menu.Item>
-							</Container>
-						</Menu>
 						<HomepageHeading />
 					</Segment>
 				</Visibility>
@@ -212,23 +182,62 @@ ResponsiveContainer.propTypes = {
 	children: PropTypes.node
 };
 
-const HomepageLayout = () => (
-	<ResponsiveContainer>
-		<Segment style={{ padding: "8em 0em" }} vertical>
-			<Container text>
-				<Header as="h3" style={{ fontSize: "2em", textAlign: "center" }}>
-					Best selling products
-				</Header>
-				<Items />
-				<div style={{ width: "100%", height: "20px" }} />
-				<div style={{ display: "flex", justifyContent: "center" }}>
-					<Button as="a" href="/products" size="large">
-						See more
-					</Button>
-				</div>
-			</Container>
-		</Segment>
-	</ResponsiveContainer>
-);
+class HomepageLayout extends Component {
+
+	state = {
+		products: [],
+		loading: true,
+		message: null
+	}
+
+	componentDidMount() {
+
+		ApiClient.homeProducts()
+			.then(res => {
+				this.setState({ loading: !res.data.success, products: res.data.products, message: null })
+			})
+			.catch(e => {
+				this.setState({ loading: true, products: [], message: 'Could not load the data' })
+			})
+	}
+
+	render() {
+
+		const {message, loading, products} = this.state;
+
+		return (
+			<ResponsiveContainer>
+				<Segment style={{ padding: "8em 0em" }} vertical>
+					<Container text>
+						<Header as="h3" style={{ fontSize: "2em", textAlign: "center" }}>
+							Best selling products
+						</Header>
+						{message ?
+							<div>{message}</div>
+							:
+							<Fragment>
+							{products.length > 0 ?
+								<Fragment>
+									<Items products={products} />
+									<div style={{ width: "100%", height: "20px" }} />
+									<div style={{ display: "flex", justifyContent: "center" }}>
+										<Button as={Link} to="/products" size="large">
+											See more
+										</Button>
+									</div>
+								</Fragment>
+								:
+								<div>There are no products yet!</div>
+							}
+							</Fragment>
+						}
+
+					</Container>
+				</Segment>
+			</ResponsiveContainer>
+		)
+	}
+
+}
 
 export default HomepageLayout;
