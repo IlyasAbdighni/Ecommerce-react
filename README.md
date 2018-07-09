@@ -20,6 +20,10 @@ Github Repo: https://github.com/IlyasAbdighni/Ecommerce-react
 
 WebSite hosted at Heroku: https://webprogramming-react.herokuapp.com/
 
+Document: https://github.com/IlyasAbdighni/Ecommerce-react/blob/master/Documentation.pdf
+
+Youtube video: https://youtu.be/pmmPtAxCxsY
+
 ## Achieved points:
 
 1.  Users can register;
