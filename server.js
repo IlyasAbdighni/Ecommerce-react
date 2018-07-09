@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const config = require('./config/main');
 const morgan = require('morgan');
 const passport = require('passport');
-const flash = require('connect-flash');
 
 app.use(
 	bodyParser.urlencoded({
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 
 // log requests to console
 app.use(morgan('dev'));
-app.use(flash());
 
 // Initialize passport for user
 app.use(passport.initialize());
