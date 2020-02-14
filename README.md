@@ -1,12 +1,4 @@
-# Udunig Online Shop
-
-Udunig online shop; The webpage: https://webprogramming-react.herokuapp.com/
-
-## Studente
-
-    Yiliyasi Aboduaini
-
-    n.matricola: 096167
+# Online Shop
 
 ## The system already has an admin.
 

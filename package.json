@@ -3,11 +3,6 @@
 	"version": "1.0.0",
 	"description": "Ecommerce demo app using node and react.",
 	"main": "server.js",
-	"engines": {
-		"node": "10.4.0",
-		"npm": "6.1.0",
-		"yarn": "1.5.1"
-	},
 	"scripts": {
 		"dev": "nodemon server.js",
 		"start": "node server.js",
