@@ -27,7 +27,7 @@ const HomepageHeading = ({ mobile }) => (
 	<Container text>
 		<Header
 			as="h1"
-			content="Welcome to Udunig Online shop"
+			content="Welcome to Online shop"
 			inverted
 			style={{
 				fontSize: mobile ? "2em" : "4em",
@@ -38,7 +38,7 @@ const HomepageHeading = ({ mobile }) => (
 		/>
 		<Header
 			as="h2"
-			content="A project dedicated to the web programming course."
+			content="A project dedicated to study web programming."
 			inverted
 			style={{
 				fontSize: mobile ? "1.5em" : "1.7em",

@@ -11,6 +11,7 @@
 		"axios": "^0.18.0",
 		"moment": "^2.22.2",
 		"react": "^16.4.0",
+		"react-chat-widget": "^2.1.5",
 		"react-dom": "^16.4.0",
 		"react-redux": "^5.0.7",
 		"react-router-dom": "^4.3.1",

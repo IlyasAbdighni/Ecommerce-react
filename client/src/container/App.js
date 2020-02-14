@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import {ApiClient} from '../utils/ApiClient';
 import Auth from '../utils/Auth';
 import PrivateRoute from './PrivateRoute';
+import ChatBoxComponent from "../components/chatbox/chatBox";
 
 class App extends React.Component {
 
@@ -46,7 +47,8 @@ componentDidMount() {
           <Route exact path='/products' component={Products.Products} />
           <Route exact path='/admin/product/add' component={Admin.AddProduct} />
           <Route exact path='/account' component={User.Profile} />
-					<Footer />
+					<ChatBoxComponent/>
+          <Footer />
 				</div>
 			</Router>
 		);

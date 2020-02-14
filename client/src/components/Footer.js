@@ -16,7 +16,7 @@ export default () => (
 						<Header as="h4" inverted>
 							Footer Header
 						</Header>
-						<p>This is a project for Web Programming course.</p>
+						<p>This is a project for study Web Programming.</p>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
