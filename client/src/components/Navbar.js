@@ -97,6 +97,13 @@ class Navbar extends Component {
 						active={this.pathname === "/products"}
 						onClick={this.handleItemClick}
 					/>
+					<Menu.Item
+						name="About"
+						as={Link}
+						to="/about"
+						active={this.pathname === "/about"}
+						onClick={this.handleItemClick}
+					/>
 				{renderUserMenu(user, this.pathname, this.logOut)}
 
 				</Menu>

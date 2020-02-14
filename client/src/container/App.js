@@ -9,6 +9,7 @@ import {ApiClient} from '../utils/ApiClient';
 import Auth from '../utils/Auth';
 import PrivateRoute from './PrivateRoute';
 import ChatBoxComponent from "../components/chatbox/chatBox";
+import AboutComponent from "../components/about";
 
 class App extends React.Component {
 
@@ -40,15 +41,18 @@ componentDidMount() {
 		return (
 			<Router>
 				<div>
+        <main>
 					<Navbar user={user} />
 					<Route path="/" exact component={Home} />
 					<Route exact path="/login" component={AuthPage.Login} />
 					<Route exact path="/register" component={AuthPage.Register} />
+          <Route exact path="/about" component={AboutComponent} />
           <Route exact path='/products' component={Products.Products} />
           <Route exact path='/admin/product/add' component={Admin.AddProduct} />
           <Route exact path='/account' component={User.Profile} />
 					<ChatBoxComponent/>
           <Footer />
+          </main>
 				</div>
 			</Router>
 		);
