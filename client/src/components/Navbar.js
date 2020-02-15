@@ -1,80 +1,77 @@
 import React, { Component } from "react";
 import { Menu, Segment } from "semantic-ui-react";
-import {Link, Redirect} from 'react-router-dom';
-import Auth from '../utils/Auth';
-import {authenticateUser} from '../actions/user';
-import {ApiClient} from '../utils/ApiClient';
-import {connect} from 'react-redux';
+import { Link, Redirect } from "react-router-dom";
+import Auth from "../utils/Auth";
+import { authenticateUser } from "../actions/user";
+import { ApiClient } from "../utils/ApiClient";
+import { connect } from "react-redux";
 
 const renderUserMenu = (user, pathname, logOut) => {
-	if (user && user.authenticated) {
-		return (
-			<React.Fragment>
-				{
-					user.user.role === 'Admin' &&
-					<Menu.Item
-						as={Link}
-						to='/admin/product/add'
-						name='Add a new product'
-						active={pathname === '/admin/product/add'}
-						position="right"
-					/>
-				}
+  if (user && user.authenticated) {
+    return (
+      <React.Fragment>
+        {user.user.role === "Admin" && (
+          <Menu.Item
+            as={Link}
+            to="/admin/product/add"
+            name="Add a new product"
+            active={pathname === "/admin/product/add"}
+            position="right"
+          />
+        )}
 
-				<Menu.Item
-					as={Link}
-					to="/account"
-					name={user.user.role === 'Admin' ? "admin" : user.user.email}
-					active={pathname === "/admin" || pathname === "/user/cart"}
-					position="right"
-				/>
+        <Menu.Item
+          as={Link}
+          to="/account"
+          name={user.user.role === "Admin" ? "admin" : user.user.email}
+          active={pathname === "/admin" || pathname === "/user/cart"}
+          position="right"
+        />
 
-				<Menu.Item
-					name="logout"
-					onClick={logOut}
-					position='right'
-				/>
-			</React.Fragment>
-		)
-	}
+        <Menu.Item name="logout" onClick={logOut} position="right" />
+      </React.Fragment>
+    );
+  }
 
-	return (
-		<React.Fragment>
-			<Menu.Item
-				as={Link}
-				to="/login"
-				name="login"
-				active={pathname === "/login"}
-				position="right"
-			/>
-			<Menu.Item
-				as={Link}
-				to="/register"
-				name="register"
-				active={pathname === "/register"}
-			/>
-		</React.Fragment>
-	)
-}
+  return (
+    <React.Fragment>
+      <Menu.Item
+        as={Link}
+        to="/login"
+        name="login"
+        active={pathname === "/login"}
+        position="right"
+      />
+      <Menu.Item
+        as={Link}
+        to="/register"
+        name="register"
+        active={pathname === "/register"}
+      />
+    </React.Fragment>
+  );
+};
 
 class Navbar extends Component {
+  state = { user: null, authenticated: false };
 
-	state = { user: null, authenticated:false }
-
-
-	componentDidMount() {
+  componentDidMount() {
     this.props.dispatch(authenticateUser());
   }
 
   componentWillReceiveProps(nextProps) {
-		if (nextProps.user && nextProps.user.authenticated) {
-			this.setState({ user: nextProps.user, authenticated: nextProps.user.authenticated })
-		}
+    if (nextProps.user && nextProps.user.authenticated) {
+      this.setState({
+        user: nextProps.user,
+        authenticated: nextProps.user.authenticated
+      });
+    }
   }
 
-	logOut = () => {
-		Auth.deauthenticateUser();
-		window.location = window.location.origin + '/login';
+  logOut = () => {
+    Auth.deauthenticateUser();
+    window.location = window.location.origin + "/login";
+  };
 
 	}
 
@@ -112,4 +109,4 @@ class Navbar extends Component {
 	}
 }
 
-export default connect(({user}) => ({user}))(Navbar);
+export default connect(({ user }) => ({ user }))(Navbar);
