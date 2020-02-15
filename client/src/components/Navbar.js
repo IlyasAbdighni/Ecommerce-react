@@ -5,6 +5,7 @@ import Auth from "../utils/Auth";
 import { authenticateUser } from "../actions/user";
 import { ApiClient } from "../utils/ApiClient";
 import { connect } from "react-redux";
+import FloatCart from "../components/FloatCart";
 
 const renderUserMenu = (user, pathname, logOut) => {
   if (user && user.authenticated) {
@@ -27,8 +28,13 @@ const renderUserMenu = (user, pathname, logOut) => {
           active={pathname === "/admin" || pathname === "/user/cart"}
           position="right"
         />
-
-        <Menu.Item name="logout" onClick={logOut} position="right" />
+        <Menu.Item
+          name="logout"
+          onClick={logOut}
+          position="right"
+          style={{ marginRight: "50px" }}
+        />
+        <FloatCart />
       </React.Fragment>
     );
   }
@@ -73,38 +79,37 @@ class Navbar extends Component {
     window.location = window.location.origin + "/login";
   };
 
-	render() {
-		const {user} = this.state;
-		return (
-			<Segment inverted>
-				<Menu inverted pointing secondary>
-					<Menu.Item
-						as={Link}
-						to="/"
-						name="home"
-						active={this.pathname === "/"}
-						onClick={this.handleItemClick}
-					/>
-					<Menu.Item
-						name="products"
-						as={Link}
-						to="/products"
-						active={this.pathname === "/products"}
-						onClick={this.handleItemClick}
-					/>
-					<Menu.Item
-						name="About"
-						as={Link}
-						to="/about"
-						active={this.pathname === "/about"}
-						onClick={this.handleItemClick}
-					/>
-				{renderUserMenu(user, this.pathname, this.logOut)}
-
-				</Menu>
-			</Segment>
-		);
-	}
+  render() {
+    const { user } = this.state;
+    return (
+      <Segment inverted>
+        <Menu inverted pointing secondary>
+          <Menu.Item
+            as={Link}
+            to="/"
+            name="home"
+            active={this.pathname === "/"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="products"
+            as={Link}
+            to="/products"
+            active={this.pathname === "/products"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="About"
+            as={Link}
+            to="/about"
+            active={this.pathname === "/about"}
+            onClick={this.handleItemClick}
+          />
+          {renderUserMenu(user, this.pathname, this.logOut)}
+        </Menu>
+      </Segment>
+    );
+  }
 }
 
 export default connect(({ user }) => ({ user }))(Navbar);

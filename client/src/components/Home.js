@@ -21,6 +21,8 @@ import Items from "./item-list/Items";
 import Footer from "./Footer";
 import { ApiClient } from "../utils/ApiClient";
 import axios from "axios";
+import ProductList from "./ProductList";
+import { PRODUCT_LIST } from "./Products";
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
@@ -193,7 +195,7 @@ class HomepageLayout extends Component {
       .then(res => {
         this.setState({
           loading: !res.data.success,
-          products: res.data.products,
+          products: PRODUCT_LIST,
           message: null
         });
       })
@@ -212,7 +214,7 @@ class HomepageLayout extends Component {
     return (
       <ResponsiveContainer>
         <Segment vertical>
-          <Container text>
+          <Container>
             <Header as="h3" style={{ fontSize: "2em", textAlign: "center" }}>
               Best selling products
             </Header>
@@ -221,14 +223,24 @@ class HomepageLayout extends Component {
             ) : (
               <Fragment>
                 {products.length > 0 ? (
-                  <Fragment>
-                    <Items products={products} />
-                    <div style={{ justifyContent: "center" }}>
-                      <Button as={Link} to="/products" size="large">
+                  <div>
+                    <ProductList products={products} />
+                    <div
+                      style={{
+                        textAlign: "center",
+                        padding: "0 20%"
+                      }}
+                    >
+                      <Button
+                        as={Link}
+                        to="/products"
+                        size="large"
+                        style={{ width: "100%" }}
+                      >
                         See more
                       </Button>
                     </div>
-                  </Fragment>
+                  </div>
                 ) : (
                   <div>There are no products yet!</div>
                 )}

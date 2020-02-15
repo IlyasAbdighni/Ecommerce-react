@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getProducts, search } from "../actions/products";
 import ProductList from "./ProductList";
 
-const PRODUCT_LIST = {
+export const PRODUCT_LIST = {
   length: 5,
   items: [
     {
