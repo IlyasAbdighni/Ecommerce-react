@@ -1,0 +1,17 @@
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  overflow: hidden;
+}
+.main-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: calc(100vh - 20vh);
+}
+.nav-bar {
+  height: 10vh;
+}
+.footer {
+  bottom: 0;
+  width: 100%;
+}
