@@ -73,30 +73,40 @@ class Navbar extends Component {
     window.location = window.location.origin + "/login";
   };
 
-  render() {
-    const { user } = this.state;
-    return (
-      <Segment inverted>
-        <Menu inverted pointing secondary>
-          <Menu.Item
-            as={Link}
-            to="/"
-            name="home"
-            active={this.pathname === "/"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="products"
-            as={Link}
-            to="/products"
-            active={this.pathname === "/products"}
-            onClick={this.handleItemClick}
-          />
-          {renderUserMenu(user, this.pathname, this.logOut)}
-        </Menu>
-      </Segment>
-    );
-  }
+	}
+
+	render() {
+		const {user} = this.state;
+		return (
+			<Segment inverted>
+				<Menu inverted pointing secondary>
+					<Menu.Item
+						as={Link}
+						to="/"
+						name="home"
+						active={this.pathname === "/"}
+						onClick={this.handleItemClick}
+					/>
+					<Menu.Item
+						name="products"
+						as={Link}
+						to="/products"
+						active={this.pathname === "/products"}
+						onClick={this.handleItemClick}
+					/>
+					<Menu.Item
+						name="About"
+						as={Link}
+						to="/about"
+						active={this.pathname === "/about"}
+						onClick={this.handleItemClick}
+					/>
+				{renderUserMenu(user, this.pathname, this.logOut)}
+
+				</Menu>
+			</Segment>
+		);
+	}
 }
 
 export default connect(({ user }) => ({ user }))(Navbar);

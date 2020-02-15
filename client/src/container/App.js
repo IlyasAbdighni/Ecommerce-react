@@ -10,6 +10,8 @@ import Auth from "../utils/Auth";
 import PrivateRoute from "./PrivateRoute";
 import ChatBoxComponent from "../components/chatbox/chatBox";
 import "../styles/commonStyle.css";
+import AboutComponent from "../components/about";
+
 class App extends React.Component {
   state = {
     user: null
@@ -48,6 +50,7 @@ class App extends React.Component {
             <Route exact path="/login" component={AuthPage.Login} />
             <Route exact path="/register" component={AuthPage.Register} />
             <Route exact path="/products" component={Products.Products} />
+            <Route exact path="/about" component={AboutComponent} />
             <Route
               exact
               path="/admin/product/add"
@@ -64,6 +67,7 @@ class App extends React.Component {
       </Router>
     );
   }
+
 }
 
 const mapStateToProps = state => state;
