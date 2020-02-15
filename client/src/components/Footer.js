@@ -2,7 +2,7 @@ import React from "react";
 import { Segment, Container, Grid, List, Header } from "semantic-ui-react";
 
 export default () => (
-  <Segment inverted vertical>
+  <Segment inverted vertical >
     <Container>
       <Grid divided inverted stackable>
         <Grid.Row>

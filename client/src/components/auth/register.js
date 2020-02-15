@@ -10,7 +10,7 @@ import {
 import { ApiClient } from "../../utils/ApiClient";
 import { Redirect } from "react-router-dom";
 
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
     email: null,
     password: null,
@@ -84,13 +84,13 @@ class Login extends React.Component {
 						You can do same with CSS, the main idea is that all the elements up to the `Grid`
 						below must have a height of 100%.
 					*/}
-          <style>{`
+          {/* <style>{`
 						body > div,
 						body > div > div,
 						body > div > div > div.login-form {
 							height: 70%;
 						}
-					`}</style>
+					`}</style> */}
           <Grid
             textAlign="center"
             style={{ height: "100%" }}
@@ -98,7 +98,7 @@ class Login extends React.Component {
           >
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as="h3" textAlign="center">
-                Regi
+                Register
               </Header>
               {this.state.error && (
                 <Message color="red">{this.state.error}</Message>
@@ -150,4 +150,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Register;

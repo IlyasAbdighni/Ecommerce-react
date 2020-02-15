@@ -73,8 +73,6 @@ class Navbar extends Component {
     window.location = window.location.origin + "/login";
   };
 
-	}
-
 	render() {
 		const {user} = this.state;
 		return (
