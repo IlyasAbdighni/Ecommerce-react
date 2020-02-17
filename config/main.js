@@ -1,5 +1,5 @@
 module.exports = {
 	secret: "dfjojeriowjiotutewrlk^&&%$$#@)((&&&**",
 	database:
-		"mongodb://yiliyasi:udunig2018@ds125331.mlab.com:25331/udunig-online-shop"
+		"mongodb://adminshop:Password1@ds113608.mlab.com:13608/shopdemo"
 };

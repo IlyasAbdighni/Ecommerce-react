@@ -3,11 +3,6 @@
 	"version": "1.0.0",
 	"description": "Ecommerce demo app using node and react.",
 	"main": "server.js",
-	"engines": {
-		"node": "10.4.0",
-		"npm": "6.1.0",
-		"yarn": "1.5.1"
-	},
 	"scripts": {
 		"dev": "nodemon server.js",
 		"start": "node server.js",
@@ -35,6 +30,7 @@
 		"nodemon": "^1.17.5",
 		"passport": "^0.4.0",
 		"passport-jwt": "^4.0.0",
-		"prettier-eslint": "^8.8.2"
+		"prettier-eslint": "^8.8.2",
+		"prop-types": "^15.7.2"
 	}
 }
