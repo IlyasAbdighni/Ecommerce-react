@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "react": "^16.4.0",
     "react-chat-widget": "^2.1.5",
     "react-dom": "^16.4.0",
